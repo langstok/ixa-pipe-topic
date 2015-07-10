@@ -29,11 +29,13 @@
       <scope>test</scope>
     </dependency>
 
+
     <dependency>
-      <groupId>ixa.kaflib</groupId>
+      <groupId>com.github.ixa-ehu</groupId>
       <artifactId>kaflib-naf</artifactId>
-      <version>1.1-SNAPSHOT</version>
-    </dependency>
+      <version>1.1.5</version>
+    </dependency> 
+    
 
     <dependency>
       <groupId>org.jdom</groupId>

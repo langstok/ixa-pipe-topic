@@ -38,7 +38,10 @@ public class PostprocessNAF {
 	    String categoryCode = category.getAttribute("code");
 	    Float weight = Float.parseFloat(category.getAttribute("weight"));
 	    String label = info.getDescriptorLabel(categoryCode);
-	    Topic topic = output.newTopic(label,weight,name,"JEX");
+	    Topic topic = output.newTopic(label);
+	    topic.setSource(name);
+	    topic.setMethod("JEX");
+	    topic.setConfidence(weight);
 	}
 	
     }
