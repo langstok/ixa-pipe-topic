@@ -29,8 +29,8 @@ public class PostprocessNAF {
 		PostprocessNAF.properties = p;
 	}
 
-	public void postProcess (File input, KAFDocument output) throws Exception{
-		String lang = output.getLang();
+	public KAFDocument postProcess (File input, KAFDocument kaf) throws Exception{
+		String lang = kaf.getLang();
 		String name = "ixa-pipe-topic-" + lang;
 
 		String displayLang = properties.getProperty(DISPLAY_LANG);
@@ -50,11 +50,12 @@ public class PostprocessNAF {
 			String categoryCode = category.getAttribute("code");
 			Float weight = Float.parseFloat(category.getAttribute("weight"));
 			String label = info.getDescriptorLabel(categoryCode);
-			Topic topic = output.newTopic(label);
+			Topic topic = kaf.newTopic(label);
 			topic.setSource(name);
 			topic.setMethod("JEX");
 			topic.setConfidence(weight);
 		}
 
+		return kaf;
 	}
 }

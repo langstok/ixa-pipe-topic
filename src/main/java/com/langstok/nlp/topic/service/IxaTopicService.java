@@ -21,9 +21,9 @@ import ixa.pipe.topic.PreprocessNAF;
 
 @Service
 @EnableConfigurationProperties(TopicProperties.class)
-public class IxaJexTopicService {
+public class IxaTopicService {
 
-	private static final Logger LOGGER = Logger.getLogger(IxaJexTopicService.class);
+	private static final Logger LOGGER = Logger.getLogger(IxaTopicService.class);
 
 	@Autowired
 	private TopicProperties topicProperties;
@@ -33,8 +33,8 @@ public class IxaJexTopicService {
 	private IndexNAF index;
 	private PostprocessNAF postprocess;
 	
-	private static String VERSION = IxaJexTopicService.class.getPackage().getImplementationVersion();
-	private static String COMMIT = IxaJexTopicService.class.getPackage().getSpecificationVersion();
+	private static String VERSION = IxaTopicService.class.getPackage().getImplementationVersion();
+	private static String COMMIT = IxaTopicService.class.getPackage().getSpecificationVersion();
 
 
 	public KAFDocument transform(KAFDocument kaf){
@@ -63,7 +63,7 @@ public class IxaJexTopicService {
 		// create output file, tmp 
 		File preDoc = PreprocessNAF.createPreprocess(kaf);
 		File assignRes = index.assign(preDoc, properties);
-		postprocess.postProcess(assignRes,kaf);
+		postprocess.postProcess(assignRes, kaf);
 
 		//  // deletes files when the virtual machine terminate
 		preDoc.deleteOnExit();
