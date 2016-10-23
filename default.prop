@@ -8,34 +8,34 @@
 
 # All files in this directory will be processed
 # The module will create a temporary folder and will create there the directory
-inputDir = jex/documents/
+inputDir = ../../models/en-eurovoc-1.0/en-eurovoc-1.0/documents/
 #The result will be written to This file 
 # The module will create the file within the temporary folder
-outputPre = jex/result/documents.cf
+outputPre = ../../models/en-eurovoc-1.0/result/documents.cf
 
 # path to the stopword list; provided by JEX
-stopwords = jex/resources/stopwords.txt
+stopwords = ../../models/en-eurovoc-1.0/resources/stopwords.txt
 AcceptedFormates = html,htm,txt,xml
 # path to the multiwords file; provided by JEX
-MultiWordsFile= jex/resources/stopwords_multi.txt
+MultiWordsFile= ../../models/en-eurovoc-1.0/resources/stopwords_multi.txt
 
 # the input file of the Index process
 # It is the output of the preprocess step
 # It will be in the temporary folder
-inputIndex = jex/result/documents.cf
+inputIndex = ../../models/en-eurovoc-1.0/result/documents.cf
 # where the indexing result will be written
 # within the temporary folder
-outputIndex = jex/result/Assign_Result.xml
+outputIndex = ../../models/en-eurovoc-1.0/result/Assign_Result.xml
 
 # A list of descriptors which should not be considered while indexing; 
 # as provided by JEX
-blacklist = jex/resources/blacklist.txt
+blacklist = ../../models/en-eurovoc-1.0/resources/blacklist.txt
 # A directory which includes the classifiers to be used for the classification.
 # as provided by JEX
-classifiersDir = jex/resources/classifiers/
+classifiersDir = ../../models/en-eurovoc-1.0/resources/classifiers/
 #The file containing the dictionary which maps between the words and the numerical representation in our system
 # as provided by JEX
-dict = jex/resources/dict
+dict = ../../models/en-eurovoc-1.0/resources/dict
 
 #this values represents the minimal number of common terms between a descriptor and a document
 # in order for the former to be considered as as a potential descriptor for the later.
@@ -50,16 +50,16 @@ minNumCommonTokens = 1
 
 #Path to a directory which include THE XML Version Of euroVoc Structure
 # as provided by JEX
-ThesaurusInfo = jex/resources/ThesaurusStructure
+ThesaurusInfo = ../../models/en-eurovoc-1.0/resources/ThesaurusStructure
 #The language in which the labels of the different thesaurus Structures will be shown
 DisplayLanguage = en
 
 #Path to compact format document which has been used for assignment
 # within the temporary folder
-documents = jex/result/documents.cf
+documents = ../../models/en-eurovoc-1.0/result/documents.cf
 #Path to the file which includes the result of the assignment
 # within the temporary folder
-inputPost = jex/result/Assign_Result.xml
+inputPost = ../../models/en-eurovoc-1.0/result/Assign_Result.xml
 
 
 # if this property is set to true, the result of the post processing will be appended to the xml file.
