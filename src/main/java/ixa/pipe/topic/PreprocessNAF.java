@@ -40,18 +40,16 @@ public class PreprocessNAF {
 	private static Pattern hyphenReplacementMatch = Pattern.compile(hyphenReplacement);
 	static Pattern whiteSpace = Pattern.compile("\\s+");
 
-	private static Properties properties = new Properties();
 	private static int numberOfRemovedWords = 0;
 	private static Set<String> stopWords = new HashSet<String>();
 
 	
 	
 	
-	public PreprocessNAF(final Properties p){
-		properties = p;
+	public PreprocessNAF(final Properties properties){
 		String stopWordListFile = properties.getProperty(Utils.STOP_WORDS_FILE);
 		if (stopWordListFile != null)
-			stopWords = Utils.getStopWords(stopWordListFile);
+			PreprocessNAF.stopWords = Utils.getStopWords(stopWordListFile);
 	}
 
 	/* Similar to createCompactFormat */

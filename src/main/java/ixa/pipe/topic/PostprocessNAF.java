@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
@@ -24,25 +25,30 @@ public class PostprocessNAF {
 	private static Properties properties = new Properties();
 	private static ThesaurusInfo info;
 	private final static String DISPLAY_LANG = "DisplayLanguage";
-
+	
+	private DocumentBuilder builder;
+		
 	public PostprocessNAF(final Properties p){
 		PostprocessNAF.properties = p;
+		try {
+			this.builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			LOGGER.error("ParserConfigurationException for documentBuilder: ", e);
+		}
+		PostprocessNAF.info = new ThesaurusInfo(
+				new File(properties.getProperty(Utils.THESAURUS_INFO)), 
+				properties.getProperty(DISPLAY_LANG));
 	}
 
 	public KAFDocument postProcess (File input, KAFDocument kaf) throws Exception{
 		String lang = kaf.getLang();
 		String name = "ixa-pipe-topic-" + lang;
 
-		String displayLang = properties.getProperty(DISPLAY_LANG);
-		info = new ThesaurusInfo(new File(properties.getProperty(Utils.THESAURUS_INFO)), displayLang);
-
-		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = builder.parse(input);
 		NodeList assignedDocuments = doc.getElementsByTagName("document");
 
 		LOGGER.info("Start postproccessing document");
 		Element assignedDocument = (Element) assignedDocuments.item(0);
-		String inputDoc = assignedDocument.getAttribute("id");
 		NodeList categories = assignedDocument.getElementsByTagName("category");
 
 		for (int i = 0; i < categories.getLength(); i++) {

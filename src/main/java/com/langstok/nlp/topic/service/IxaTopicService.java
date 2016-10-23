@@ -90,7 +90,7 @@ public class IxaTopicService {
 			this.properties.load(new FileInputStream(topicProperties.getJexPropertiesPath()));
 			
 			new PreprocessNAF(properties);
-			this.index = new IndexNAF();
+			this.index = new IndexNAF(properties);
 			this.postprocess = new PostprocessNAF(this.properties);
 			
 		} catch (IOException e) {
