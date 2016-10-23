@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
 import com.langstok.nlp.topic.configuration.TopicProperties;
 
@@ -60,6 +61,11 @@ public class IxaTopicService {
 	
 	public KAFDocument getTopics(KAFDocument kaf) throws Exception{
 
+		LOGGER.info("IXA TOPIC started for publicId: " 
+				+ kaf.getPublic().publicId + " and uri: " + kaf.getPublic().uri);
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
+		
 		// create output file, tmp 
 		File preDoc = PreprocessNAF.createPreprocess(kaf);
 		File assignRes = index.assign(preDoc, properties);
@@ -68,7 +74,10 @@ public class IxaTopicService {
 		//  // deletes files when the virtual machine terminate
 		preDoc.deleteOnExit();
 		assignRes.deleteOnExit();
+		stopWatch.stop();
+
 		
+		LOGGER.info("IXA TOPIC finished in time: " + stopWatch.getTotalTimeMillis() +" ms for publicId: " + kaf.getPublic().publicId);
 		return kaf;
 	}
 	
